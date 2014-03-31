@@ -1,0 +1,15 @@
+2014-03-27T10:24:42.046128000 0.477788s info: Creating directory /Users/wallarelvo-mac/Documents/Uni/JH/CS3301/Coding/databases/rethinkdb_data
+2014-03-27T10:24:42.046288000 0.477947s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/wallarelvo-mac/Documents/Uni/JH/CS3301/Coding/databases/rethinkdb_data' did not already exist.)
+2014-03-27T10:24:42.046329000 0.477988s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
+2014-03-27T10:24:42.066843000 0.498503s info: Running on Darwin 12.5.0 x86_64
+2014-03-27T10:24:42.066887000 0.498546s info: Loading data from directory /Users/wallarelvo-mac/Documents/Uni/JH/CS3301/Coding/databases/rethinkdb_data
+2014-03-27T10:24:45.964334000 4.396093s info: Listening for intracluster connections on port 29015
+2014-03-27T10:24:45.965497000 4.397255s info: Listening for client driver connections on port 28015
+2014-03-27T10:24:45.965512000 4.397270s info: Listening for administrative HTTP connections on port 8080
+2014-03-27T10:24:45.965748000 4.397506s info: Listening on addresses: 127.0.0.1, 172.31.1.81
+2014-03-27T10:24:45.965750000 4.397508s info: Server ready
+2014-03-29T08:18:49.025778000 33044.069388s info: Server got SIGINT; shutting down...
+2014-03-29T08:18:49.288636000 33044.332245s info: Shutting down client connections...
+2014-03-29T08:18:49.558408000 33044.602018s info: All client connections closed.
+2014-03-29T08:18:49.558426000 33044.602036s info: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2014-03-29T08:18:49.558430000 33044.602039s info: Storage engine shut down.
