@@ -1,17 +1,20 @@
 package main
 
 import (
+    config "../config"
     "flag"
+    "fmt"
     "net/http"
 )
 
-func Reroute(w http.ResponseWriter, r *http.Request) {
-    http.Redirect(w, r, "http://localhost:8001/job", http.StatusFound)
+func SensorRoute(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Worker")
 }
 
 func main() {
 
-    http.HandleFunc("/helloworld", Reroute)
+    UIHandler()
+    http.HandleFunc(config.WorkerSensorRoute, SensorRoute)
 
     var addr_flag = flag.String(
         "addr",
@@ -27,5 +30,8 @@ func main() {
 
     flag.Parse()
 
+    heart := CreateHeart(1000, "http://"+*addr_flag+":"+*port_flag)
+    defer heart.Stop()
+    heart.Start()
     http.ListenAndServe(*addr_flag+":"+*port_flag, nil)
 }
