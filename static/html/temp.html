@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dummy page</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <!-- JSON -->
+    <script type="text/javascript" src="../js/json2.js" ></script> 
+    <!-- jQuery -->
+    <script type="text/javascript" src="../js/jquery-1.10.2.js" charset="utf-8"></script>
+
+  </head>
+  <body>
+    <table>
+    <tr>
+      <td>Support</td>
+      <td id="isSupported"></td>
+    </tr>
+    <tr>
+      <td>Direction [alpha]</td>
+      <td id="alpha"></td>
+    </tr>
+    <tr>
+      <td>Tilt Front/Back [beta]</td>
+      <td id="beta"a></td>
+    </tr>
+    <tr>
+      <td>Tilt Left/Right [gamma]</td>
+      <td id="gamma"></td>
+    </tr>
+   </table>
+
+   <button onclick="handleClientRequest()">Click!</button>
+
+<!--
+    <div id="alpha">a</div>
+    <div id="beta">b</div>
+    <div id="gamma">g</div>
+-->
+
+<script>
+
+if (window.DeviceOrientationEvent) {
+  document.getElementById("isSupported").innerHTML = "DeviceOrientation supported on your browser";
+ console.log("DeviceOrientation is supported");
+ window.addEventListener('deviceorientation', function(event) {
+  console.log(event);
+    // alpha is the compass direction the device is facing in degrees
+    var alpha = event.alpha;
+    // beta is the front-to-back tilt in degrees
+    var beta = event.beta;
+     // gamma is the left-to-right tilt
+    var gamma = event.gamma;
+
+    deviceOrientationHandler(alpha, beta, gamma);
+
+    deviceOrientationHandler(alpha, beta, gamma);
+}
+  , false);
+}
+ else {
+        document.getElementById("isSupported").innerHTML = "Not supported on your device or browser.Sorry."
+      }
+
+function deviceOrientationHandler(alpha, beta, gamma){
+    document.getElementById("alpha").innerHTML = Math.round(alpha);
+    document.getElementById("beta").innerHTML = Math.round(beta);
+    document.getElementById("gamma").innerHTML = Math.round(gamma);
+}
+
+function handleClientRequest(){
+  var url = "http://localhost:8080";
+
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: 'json',
+    success: function(data){
+      handleResponse(data);
+    },
+    error: function(){
+      publishError();
+    },
+    cache: false
+  });
+}
+
+function handleResponse(data){
+console.log(data);
+}
+
+function publishError(){
+  $('#isSupported').html(''); 
+  
+    var mainDiv = $('#isSupported')[0];
+    
+    var errorDiv = document.createElement("div");
+    var errorText = document.createTextNode("Smth went wrong! ");
+    errorDiv.appendChild(errorText);
+    errorDiv.setAttribute("id", "error");
+    mainDiv.appendChild(errorDiv);
+    
+}
+
+</script>
+  </body>
+</html>
