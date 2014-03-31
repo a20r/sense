@@ -1,7 +1,7 @@
 package main
 
 import (
-    config "../config"
+    // config "../config"
     "flag"
     "net/http"
 )
@@ -50,7 +50,7 @@ func MobileDeviceReroute(w http.ResponseWriter, r *http.Request) {
     load_data.Frequency++
     heartbeatMap[addr] = load_data
 
-    http.Redirect(w, r, addr+config.WorkerSensorRoute, http.StatusFound)
+    http.Redirect(w, r, addr+"/temp.html", http.StatusFound)
 }
 
 func main() {

@@ -13,3 +13,11 @@
 2014-03-29T08:18:49.558408000 33044.602018s info: All client connections closed.
 2014-03-29T08:18:49.558426000 33044.602036s info: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
 2014-03-29T08:18:49.558430000 33044.602039s info: Storage engine shut down.
+2014-03-31T23:57:17.104338000 0.311269s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
+2014-03-31T23:57:17.152674000 0.359606s info: Running on Darwin 12.5.0 x86_64
+2014-03-31T23:57:17.152722000 0.359652s info: Loading data from directory /Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data
+2014-03-31T23:57:17.222792000 0.429722s info: Listening for intracluster connections on port 29015
+2014-03-31T23:57:17.224232000 0.431163s info: Listening for client driver connections on port 28015
+2014-03-31T23:57:17.224249000 0.431179s info: Listening for administrative HTTP connections on port 8080
+2014-03-31T23:57:17.224503000 0.431434s info: Listening on addresses: 127.0.0.1, 138.251.247.87
+2014-03-31T23:57:17.224504000 0.431435s info: Server ready

@@ -2,10 +2,13 @@ package main
 
 import (
     config "../config"
+    util "../util"
     "flag"
     "fmt"
     "net/http"
 )
+
+var Db util.SensorDB = util.MakeSensorDB("localhost")
 
 func SensorRoute(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, "Worker")
@@ -33,5 +36,8 @@ func main() {
     heart := CreateHeart(1000, "http://"+*addr_flag+":"+*port_flag)
     defer heart.Stop()
     heart.Start()
+
+    Db.Initialize()
+
     http.ListenAndServe(*addr_flag+":"+*port_flag, nil)
 }
