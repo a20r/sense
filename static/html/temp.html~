@@ -143,32 +143,18 @@ function sendSensor(){
 );
 }
 
-function initGeolocation()
-     {
-        if( navigator.geolocation )
-        {
-           // Call getCurrentPosition with success and failure callbacks
-           navigator.geolocation.getCurrentPosition( success, fail );
-        }
-        else
-        {
-           console.log("Sorry, your browser does not support geolocation services.");
-        }
-     }
 
-     function success(position)
-     {
+function initGeolocation(){
+jQuery.getJSON('http://freegeoip.net/json/', function(location) {
+  var ip = location.ip;
+  var longitude = location.longitude;
+  var latitude = location.latitude;
+  document.getElementById('long').innerHTML = longitude;
+  document.getElementById('lat').innerHTML = latitude;
 
-         document.getElementById('long').innerHTML = position.coords.longitude;
-         document.getElementById('lat').innerHTML = position.coords.latitude
-     }
+});
 
-     function fail()
-     {
-	 //fake data
-	 document.getElementById('long').innerHTML = "56.3404";
-         document.getElementById('lat').innerHTML = "2.7955";
-     }
+} 
 
 </script>
 </html>
