@@ -21,6 +21,10 @@
       <td id="isSupported"></td>
     </tr>
     <tr>
+      <td>IP address</td>
+      <td id="ip"></td>
+    </tr>
+    <tr>
       <td>Longitude</td>
       <td id="long"></td>
     </tr>
@@ -149,6 +153,7 @@ jQuery.getJSON('http://freegeoip.net/json/', function(location) {
   var ip = location.ip;
   var longitude = location.longitude;
   var latitude = location.latitude;
+  document.getElementById('ip').innerHTML = ip;
   document.getElementById('long').innerHTML = longitude;
   document.getElementById('lat').innerHTML = latitude;
 
