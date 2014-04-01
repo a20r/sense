@@ -4,20 +4,30 @@ import (
     config "../config"
     util "../util"
     "flag"
-    "fmt"
     "net/http"
+    "strconv"
 )
 
 var Db util.SensorDB = util.MakeSensorDB("localhost")
 
 func SensorRoute(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprint(w, "Worker")
+    r.ParseForm()
+
+    var sd util.SensorData
+
+    sd.Id = r.Form.Get("id")
+    sd.Timestamp = r.Form.Get("timestamp")
+    sd.Latitude, _ = strconv.ParseFloat(r.Form.Get("latitude"), 64)
+    sd.Longitude, _ = strconv.ParseFloat(r.Form.Get("longitude"), 64)
+    sd.Data = r.Form.Get("data")
+
+    Db.Insert(sd)
 }
 
 func main() {
 
     UIHandler()
-    http.HandleFunc(config.WorkerSensorRoute, SensorRoute)
+    http.HandleFunc(config.WorkerSensorRoute, util.RouteWrapper(SensorRoute))
 
     var addr_flag = flag.String(
         "addr",
@@ -36,8 +46,6 @@ func main() {
     heart := CreateHeart(1000, "http://"+*addr_flag+":"+*port_flag)
     defer heart.Stop()
     heart.Start()
-
-    Db.Initialize()
 
     http.ListenAndServe(*addr_flag+":"+*port_flag, nil)
 }
