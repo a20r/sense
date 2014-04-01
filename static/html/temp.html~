@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dummy page</title>
+    <title>Sensor Sending Page</title>
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.css" rel="stylesheet"></link>
@@ -41,8 +41,8 @@
       <td id="gamma"></td>
     </tr>
    </table>
-
-   <button onclick="sendSensor()">Click!</button>
+   Pick a sending interval: <input type="text" name="time_interval" type="number" id="time_interval"><br>
+   <button onclick="send()">Click!</button>
   </body>
 <script>
 
@@ -105,41 +105,33 @@ function publishError(){
     
 }
 
-function sendSensor(data){
+function send(){
+var user_interval = document.getElementById("time_interval").innerHTML;
+var time_interval = user_interval * 1000 ;
+sendingInterval = window.setInterval(sendSensor, time_interval);
+}
 
- var id = Math.floor((Math.random()*1000)+1);
- var timeStamp = new Date().getTime();
+function sendSensor(){
+var id = Math.floor((Math.random()*1000)+1);
+ var timestamp = new Date().getTime();
  var longitude = document.getElementById("long").innerHTML;
  var latitude =  document.getElementById("lat").innerHTML;
  var alpha = 0;
  var beta = 0;
  var gamma = 0;
-
- var sensorData = {
-    'id' : id ,
-    'timestamp' : timeStamp,
-    'longitude' : longitude,
-    'latitude' : latitude,
-    'data': {
-        'alpha': alpha,
-        'beta': beta,
-        'gamma': gamma
-    }
-}
-
-console.log(sensorData);
+console.log("id " + id);
 
  //RESTful POST
  $.ajax(
      {
     type : 'POST',
 
-    url: (''),
+    url: '/sensors',
 
     data : {
 	"id": id,
-	"timestamp": timestamp
-	"longitude": longitude
+	"timestamp": timestamp,
+	"longitude": longitude,
 	"latitude": latitude,
 	"data": JSON.stringify({
 		"alpha": alpha,
