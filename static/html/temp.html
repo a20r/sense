@@ -11,7 +11,7 @@
     <!-- JSON -->
     <script type="text/javascript" src="../js/json2.js" ></script> 
     <!-- jQuery -->
-    <script type="text/javascript" src="../js/jquery-1.10.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.js" charset="utf-8"></script>  
 
   </head>
   <body onload="initGeolocation()">
@@ -150,16 +150,16 @@ function sendSensor(){
 
 
 function initGeolocation(){
-jQuery.getJSON('http://freegeoip.net/json/', function(location) {
-  var ip = location.ip;
-  var longitude = location.longitude;
-  var latitude = location.latitude;
-  document.getElementById('ip').innerHTML = ip;
-  document.getElementById('long').innerHTML = longitude;
-  document.getElementById('lat').innerHTML = latitude;
 
+	jQuery.getJSON("http://www.telize.com/geoip?callback=?",
+		function(json) {
+  			var ip = json.ip;
+  			var longitude = json.longitude;
+  			var latitude = json.latitude;
+			  document.getElementById('ip').innerHTML = ip;
+  		          document.getElementById('long').innerHTML = longitude;
+  			  document.getElementById('lat').innerHTML = latitude;
 });
-
 } 
 
 </script>

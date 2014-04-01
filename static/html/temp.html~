@@ -11,7 +11,7 @@
     <!-- JSON -->
     <script type="text/javascript" src="../js/json2.js" ></script> 
     <!-- jQuery -->
-    <script type="text/javascript" src="../js/jquery-1.10.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.js" charset="utf-8"></script>  
 
   </head>
   <body onload="initGeolocation()">
@@ -49,7 +49,6 @@
    <button onclick="send()">Click!</button>
   </body>
 <script>
-var id = Math.floor((Math.random()*1000)+1);
 
 if (window.DeviceOrientationEvent) {
   document.getElementById("isSupported").innerHTML = "DeviceOrientation supported on your browser";
@@ -120,6 +119,8 @@ function sendSensor(){
  var timestamp = new Date().getTime();
  var longitude = document.getElementById("long").innerHTML;
  var latitude =  document.getElementById("lat").innerHTML;
+ //use ip address as an id;
+ var id = document.getElementById("ip").innerHTML;
  var alpha = 0;
  var beta = 0;
  var gamma = 0;
@@ -149,16 +150,16 @@ function sendSensor(){
 
 
 function initGeolocation(){
-jQuery.getJSON('http://freegeoip.net/json/', function(location) {
-  var ip = location.ip;
-  var longitude = location.longitude;
-  var latitude = location.latitude;
-  document.getElementById('ip').innerHTML = ip;
-  document.getElementById('long').innerHTML = longitude;
-  document.getElementById('lat').innerHTML = latitude;
 
+	jQuery.getJSON("http://www.telize.com/geoip?callback=?",
+		function(json) {
+  			var ip = json.ip;
+  			var longitude = json.longitude;
+  			var latitude = json.latitude;
+			  document.getElementById('ip').innerHTML = ip;
+  		          document.getElementById('long').innerHTML = longitude;
+  			  document.getElementById('lat').innerHTML = latitude;
 });
-
 } 
 
 </script>
