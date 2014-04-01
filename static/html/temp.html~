@@ -45,6 +45,7 @@
    <button onclick="send()">Click!</button>
   </body>
 <script>
+var id = Math.floor((Math.random()*1000)+1);
 
 if (window.DeviceOrientationEvent) {
   document.getElementById("isSupported").innerHTML = "DeviceOrientation supported on your browser";
@@ -112,14 +113,12 @@ sendingInterval = window.setInterval(sendSensor, time_interval);
 }
 
 function sendSensor(){
-var id = Math.floor((Math.random()*1000)+1);
  var timestamp = new Date().getTime();
  var longitude = document.getElementById("long").innerHTML;
  var latitude =  document.getElementById("lat").innerHTML;
  var alpha = 0;
  var beta = 0;
  var gamma = 0;
-console.log("id " + id);
 
  //RESTful POST
  $.ajax(
