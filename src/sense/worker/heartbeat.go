@@ -5,6 +5,7 @@ import (
     config "../config"
     "net/http"
     "net/url"
+    "strconv"
     "time"
 )
 
@@ -22,7 +23,7 @@ func CreateHeart(interval time.Duration, local_url string) *Heart {
 func (hb *Heart) Beat() error {
     _, err := http.PostForm(
         config.BrokerHeartbeatUrl,
-        url.Values{"address": {hb.LocalUrl}},
+        url.Values{"address": {hb.LocalUrl}, "count": {strconv.Itoa(ReqCount)}},
     )
     return err
 }

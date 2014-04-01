@@ -2,6 +2,8 @@ package util
 
 import (
     r "../../github.com/christopherhesse/rethinkgo"
+    "encoding/json"
+    "math"
 )
 
 type SensorDB struct {
@@ -15,6 +17,8 @@ type SensorData struct {
     Longitude float64
     Data      string
 }
+
+type SensorDataRow []SensorData
 
 var DbPort string = ":28015"
 var DbName string = "sense"
@@ -78,12 +82,65 @@ func (sdb SensorDB) Insert(sd SensorData) error {
     return err
 }
 
+func (sdb SensorDB) GetNear(lat, lon, rad float64) SensorDataRow {
+    var sd_list SensorDataRow
+
+    session, _ := sdb.Connect()
+    r.Db(DbName).Table(TSpec.Name).Run(session).All(&sd_list)
+
+    filtered_sd_list := make(SensorDataRow, 0)
+    for _, sd := range sd_list {
+        if sd.GetDistance(lat, lon) < rad {
+            filtered_sd_list = append(filtered_sd_list, sd)
+        }
+    }
+
+    return filtered_sd_list
+}
+
 func (sd SensorData) ToMap() r.Map {
     return r.Map{
-        "id":        sd.Id,
-        "timestamp": sd.Timestamp,
-        "latitude":  sd.Latitude,
-        "longitude": sd.Longitude,
-        "data":      sd.Data,
+        "Id":        sd.Id,
+        "Timestamp": sd.Timestamp,
+        "Latitude":  sd.Latitude,
+        "Longitude": sd.Longitude,
+        "Data":      sd.Data,
     }
+}
+
+func (sd SensorData) GetDistance(lat, lon float64) float64 {
+    R := float64(6371)
+    dLat := deg2rad(lat - sd.Latitude)
+    dLon := deg2rad(lon - sd.Longitude)
+    a := math.Sin(dLat/2)*math.Sin(dLat/2) + math.Cos(deg2rad(sd.Latitude))*
+        math.Cos(deg2rad(lat))*math.Sin(dLon/2)*math.Sin(dLon/2)
+    c := 2 * math.Atan2(math.Sqrt(a), math.Sqrt(1-a))
+    d := R * c
+    return d
+}
+
+func (sd SensorData) String() (s string) {
+    b, err := json.Marshal(sd)
+    if err != nil {
+        s = ""
+        return
+    }
+    s = string(b)
+    return
+}
+
+func (sdr SensorDataRow) String() (s string) {
+    b, err := json.Marshal(sdr)
+
+    if err != nil {
+        s = ""
+        return
+    }
+
+    s = string(b)
+    return
+}
+
+func deg2rad(deg float64) float64 {
+    return deg * (math.Pi / 180)
 }

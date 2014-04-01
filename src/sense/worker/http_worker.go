@@ -4,13 +4,17 @@ import (
     config "../config"
     util "../util"
     "flag"
+    "fmt"
     "net/http"
     "strconv"
+    "strings"
 )
 
 var Db util.SensorDB = util.MakeSensorDB("localhost")
+var ReqCount int = 0
 
 func SensorRoute(w http.ResponseWriter, r *http.Request) {
+    ReqCount++
     r.ParseForm()
 
     var sd util.SensorData
@@ -24,10 +28,23 @@ func SensorRoute(w http.ResponseWriter, r *http.Request) {
     Db.Insert(sd)
 }
 
+func ClientRoute(w http.ResponseWriter, r *http.Request) {
+    ReqCount++
+    param_list := strings.Split(r.RequestURI, "/")[2:]
+
+    lat, _ := strconv.ParseFloat(param_list[0], 64)
+    lon, _ := strconv.ParseFloat(param_list[1], 64)
+    rad, _ := strconv.ParseFloat(param_list[2], 64)
+
+    sd_list := Db.GetNear(lat, lon, rad)
+    fmt.Fprint(w, sd_list)
+}
+
 func main() {
 
     UIHandler()
     http.HandleFunc(config.WorkerSensorRoute, util.RouteWrapper(SensorRoute))
+    http.HandleFunc(config.WorkerClientRoute, util.RouteWrapper(ClientRoute))
 
     var addr_flag = flag.String(
         "addr",

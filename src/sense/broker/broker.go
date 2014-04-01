@@ -34,6 +34,10 @@ func getMinLoad() string {
         }
     }
 
+    // load_data := heartbeatMap[*minAddr]
+    // load_data.Frequency++
+    // heartbeatMap[*minAddr] = load_data
+
     return *minAddr
 }
 
@@ -43,9 +47,6 @@ func GetURL(w http.ResponseWriter, r *http.Request) {
     }
 
     minAddr := getMinLoad()
-    load_data := heartbeatMap[minAddr]
-    load_data.Frequency++
-    heartbeatMap[minAddr] = load_data
 
     fmt.Fprint(w, util.Response{"address": minAddr})
 }
@@ -57,11 +58,20 @@ func MobileDeviceReroute(w http.ResponseWriter, r *http.Request) {
 
     minAddr := getMinLoad()
 
-    load_data := heartbeatMap[minAddr]
-    load_data.Frequency++
-    heartbeatMap[minAddr] = load_data
-
     http.Redirect(w, r, minAddr+"/temp.html", http.StatusFound)
+}
+
+func ClientReroute(w http.ResponseWriter, r *http.Request) {
+    if len(heartbeatMap) < 1 {
+        panic("No workers")
+    }
+
+    minAddr := getMinLoad()
+    http.Redirect(
+        w, r,
+        minAddr+r.RequestURI,
+        http.StatusFound,
+    )
 }
 
 func main() {
@@ -69,6 +79,7 @@ func main() {
     http.HandleFunc("/heartbeat", util.RouteWrapper(UpdateWorkers))
     http.HandleFunc("/register", util.RouteWrapper(MobileDeviceReroute))
     http.HandleFunc("/url", util.RouteWrapper(GetURL))
+    http.HandleFunc("/client/", util.RouteWrapper(ClientReroute))
 
     var addr_flag = flag.String(
         "addr",
