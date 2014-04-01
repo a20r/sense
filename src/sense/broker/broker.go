@@ -2,7 +2,9 @@ package main
 
 import (
     // config "../config"
+    util "../util"
     "flag"
+    "fmt"
     "net/http"
 )
 
@@ -13,11 +15,7 @@ type LoadData struct {
 
 var heartbeatMap map[string]LoadData = make(map[string]LoadData)
 
-func MobileDeviceReroute(w http.ResponseWriter, r *http.Request) {
-    if len(heartbeatMap) < 1 {
-        panic("No workers")
-    }
-
+func getMinLoad() string {
     var minLoadData *LoadData = nil
     var minAddr *string = nil
 
@@ -35,28 +33,42 @@ func MobileDeviceReroute(w http.ResponseWriter, r *http.Request) {
             *minAddr = addr_key
         }
     }
-    var addr string
-    if minAddr == nil {
-        for addr_key, _ := range heartbeatMap {
-            addr = addr_key
-            break
-        }
-    } else {
-        addr = *minAddr
-        minLoadData.Frequency++
+
+    return *minAddr
+}
+
+func GetURL(w http.ResponseWriter, r *http.Request) {
+    if len(heartbeatMap) < 1 {
+        panic("No workers")
     }
 
-    load_data := heartbeatMap[addr]
+    minAddr := getMinLoad()
+    load_data := heartbeatMap[minAddr]
     load_data.Frequency++
-    heartbeatMap[addr] = load_data
+    heartbeatMap[minAddr] = load_data
 
-    http.Redirect(w, r, addr+"/temp.html", http.StatusFound)
+    fmt.Fprint(w, util.Response{"address": minAddr})
+}
+
+func MobileDeviceReroute(w http.ResponseWriter, r *http.Request) {
+    if len(heartbeatMap) < 1 {
+        panic("No workers")
+    }
+
+    minAddr := getMinLoad()
+
+    load_data := heartbeatMap[minAddr]
+    load_data.Frequency++
+    heartbeatMap[minAddr] = load_data
+
+    http.Redirect(w, r, minAddr+"/temp.html", http.StatusFound)
 }
 
 func main() {
 
-    http.HandleFunc("/heartbeat", UpdateWorkers)
-    http.HandleFunc("/register", MobileDeviceReroute)
+    http.HandleFunc("/heartbeat", util.RouteWrapper(UpdateWorkers))
+    http.HandleFunc("/register", util.RouteWrapper(MobileDeviceReroute))
+    http.HandleFunc("/url", util.RouteWrapper(GetURL))
 
     var addr_flag = flag.String(
         "addr",

@@ -3,6 +3,7 @@ package util
 import (
     "encoding/json"
     "io/ioutil"
+    "log"
     "net/http"
 )
 
@@ -48,4 +49,13 @@ func FileResponseCreator(folder string) func(w http.ResponseWriter, r *http.Requ
             w.Write(p.Body)
         }
     }
+}
+
+func RouteWrapper(handler func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
+    ret_func := func(w http.ResponseWriter, r *http.Request) {
+        log.Println(":: " + r.Method + " --> " + r.RequestURI)
+        handler(w, r)
+    }
+
+    return ret_func
 }

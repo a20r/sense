@@ -13,7 +13,7 @@ type SensorData struct {
     Timestamp string
     Latitude  float64
     Longitude float64
-    Data      interface{}
+    Data      string
 }
 
 var DbPort string = ":28015"
@@ -21,7 +21,9 @@ var DbName string = "sense"
 var TSpec r.TableSpec = r.TableSpec{Name: "sensors", PrimaryKey: "id"}
 
 func MakeSensorDB(addr string) SensorDB {
-    return SensorDB{addr}
+    db := SensorDB{addr}
+    db.Initialize()
+    return db
 }
 
 func (sdb SensorDB) Connect() (*r.Session, error) {
@@ -68,5 +70,20 @@ func (sdb SensorDB) Initialize() (bool, error) {
 }
 
 func (sdb SensorDB) Insert(sd SensorData) error {
-    return nil
+    session, _ := sdb.Connect()
+    var response r.WriteResponse
+    err := r.Db(DbName).Table(TSpec.Name).Insert(
+        sd.ToMap(),
+    ).Overwrite(true).Run(session).One(&response)
+    return err
+}
+
+func (sd SensorData) ToMap() r.Map {
+    return r.Map{
+        "id":        sd.Id,
+        "timestamp": sd.Timestamp,
+        "latitude":  sd.Latitude,
+        "longitude": sd.Longitude,
+        "data":      sd.Data,
+    }
 }

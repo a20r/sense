@@ -2,13 +2,11 @@ package main
 
 import (
     config "../config"
-    "log"
     "net/http"
     "time"
 )
 
 func UpdateWorkers(w http.ResponseWriter, r *http.Request) {
-    log.Println(":: POST --> /heartbeat")
     r.ParseForm()
 
     address := r.Form.Get("address")
@@ -36,6 +34,5 @@ func removeDeadWorkersLoop(workerMap map[string]LoadData) {
     for {
         time.Sleep(config.TimeDelayRemoveCheck)
         removeDeadWorkers(workerMap)
-        log.Println(workerMap)
     }
 }
