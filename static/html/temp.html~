@@ -134,12 +134,12 @@ console.log(sensorData);
      {
     type : 'POST',
 
-    url: '/sensors',
+    url: (''),
 
     data : {
 	"id": id,
-	"timestamp": timestamp,
-	"longitude": longitude,
+	"timestamp": timestamp
+	"longitude": longitude
 	"latitude": latitude,
 	"data": JSON.stringify({
 		"alpha": alpha,
