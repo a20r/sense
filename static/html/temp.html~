@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dummy page</title>
+    <title>Sensor Sending Page</title>
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.css" rel="stylesheet"></link>
     <!-- JSON -->
     <script type="text/javascript" src="../js/json2.js" ></script> 
     <!-- jQuery -->
-    <script type="text/javascript" src="../js/jquery-1.10.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.js" charset="utf-8"></script>  
 
   </head>
   <body onload="initGeolocation()">
@@ -19,6 +19,10 @@
     <tr>
       <td>Support</td>
       <td id="isSupported"></td>
+    </tr>
+    <tr>
+      <td>IP address</td>
+      <td id="ip"></td>
     </tr>
     <tr>
       <td>Longitude</td>
@@ -41,8 +45,8 @@
       <td id="gamma"></td>
     </tr>
    </table>
-
-   <button onclick="sendSensor()">Click!</button>
+   Pick a sending interval: <input type="text" name="time_interval" type="number" id="time_interval"><br>
+   <button onclick="send()">Click!</button>
   </body>
 <script>
 
@@ -105,41 +109,33 @@ function publishError(){
     
 }
 
-function sendSensor(data){
+function send(){
+var user_interval = document.getElementById("time_interval").innerHTML;
+var time_interval = user_interval * 1000 ;
+sendingInterval = window.setInterval(sendSensor, time_interval);
+}
 
- var id = Math.floor((Math.random()*1000)+1);
- var timeStamp = new Date().getTime();
+function sendSensor(){
+ var timestamp = new Date().getTime();
  var longitude = document.getElementById("long").innerHTML;
  var latitude =  document.getElementById("lat").innerHTML;
+ //use ip address as an id;
+ var id = document.getElementById("ip").innerHTML;
  var alpha = 0;
  var beta = 0;
  var gamma = 0;
-
- var sensorData = {
-    'id' : id ,
-    'timestamp' : timeStamp,
-    'longitude' : longitude,
-    'latitude' : latitude,
-    'data': {
-        'alpha': alpha,
-        'beta': beta,
-        'gamma': gamma
-    }
-}
-
-console.log(sensorData);
 
  //RESTful POST
  $.ajax(
      {
     type : 'POST',
 
-    url: (''),
+    url: '/sensors',
 
     data : {
 	"id": id,
-	"timestamp": timestamp
-	"longitude": longitude
+	"timestamp": timestamp,
+	"longitude": longitude,
 	"latitude": latitude,
 	"data": JSON.stringify({
 		"alpha": alpha,
@@ -152,32 +148,19 @@ console.log(sensorData);
 );
 }
 
-function initGeolocation()
-     {
-        if( navigator.geolocation )
-        {
-           // Call getCurrentPosition with success and failure callbacks
-           navigator.geolocation.getCurrentPosition( success, fail );
-        }
-        else
-        {
-           console.log("Sorry, your browser does not support geolocation services.");
-        }
-     }
 
-     function success(position)
-     {
+function initGeolocation(){
 
-         document.getElementById('long').innerHTML = position.coords.longitude;
-         document.getElementById('lat').innerHTML = position.coords.latitude
-     }
-
-     function fail()
-     {
-	 //fake data
-	 document.getElementById('long').innerHTML = "56.3404";
-         document.getElementById('lat').innerHTML = "2.7955";
-     }
+	jQuery.getJSON("http://www.telize.com/geoip?callback=?",
+		function(json) {
+  			var ip = json.ip;
+  			var longitude = json.longitude;
+  			var latitude = json.latitude;
+			  document.getElementById('ip').innerHTML = ip;
+  		          document.getElementById('long').innerHTML = longitude;
+  			  document.getElementById('lat').innerHTML = latitude;
+});
+} 
 
 </script>
 </html>
