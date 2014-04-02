@@ -15,7 +15,7 @@ type Heart struct {
     StopChannel chan int
 }
 
-//creates a heart
+//creates a heart that will be used to send "beats" to the server
 func CreateHeart(interval time.Duration, local_url string) *Heart {
     stop_channel := make(chan int)
     return &Heart{interval, local_url, stop_channel}

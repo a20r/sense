@@ -8,6 +8,7 @@ import (
     "time"
 )
 
+//route used for workers to send heartbeats to
 func UpdateWorkers(w http.ResponseWriter, r *http.Request) {
     r.ParseForm()
 
@@ -26,7 +27,6 @@ func UpdateWorkers(w http.ResponseWriter, r *http.Request) {
         heartbeatMap[address] = load_data
     }
 }
-
 
 //remove dead workers from the heartbeat map
 func removeDeadWorkers(workerMap map[string]LoadData) {

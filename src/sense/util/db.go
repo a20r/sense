@@ -30,11 +30,13 @@ func MakeSensorDB(addr string) SensorDB {
     return db
 }
 
+// connects to the rethinkdb
 func (sdb SensorDB) Connect() (*r.Session, error) {
     session, err := r.Connect(sdb.Name+DbPort, DbName)
     return session, err
 }
 
+// creates a new table in the database
 func (sdb SensorDB) Create() error {
     session, err := sdb.Connect()
     if err != nil {
@@ -46,6 +48,7 @@ func (sdb SensorDB) Create() error {
     }
 }
 
+// creates a new table if it does not exist, adds the primary keys
 func (sdb SensorDB) Initialize() (bool, error) {
     var db_list []string
     var err error
@@ -73,6 +76,7 @@ func (sdb SensorDB) Initialize() (bool, error) {
     return true, nil
 }
 
+// inserts new data into the database
 func (sdb SensorDB) Insert(sd SensorData) error {
     session, _ := sdb.Connect()
     var response r.WriteResponse
@@ -82,6 +86,7 @@ func (sdb SensorDB) Insert(sd SensorData) error {
     return err
 }
 
+// gets all the sensor data within a certain radius of a latitude and longitude
 func (sdb SensorDB) GetNear(lat, lon, rad float64) SensorDataRow {
     var sd_list SensorDataRow
 
@@ -108,6 +113,7 @@ func (sd SensorData) ToMap() r.Map {
     }
 }
 
+// gets the lat, long distance from a sensor data structure
 func (sd SensorData) GetDistance(lat, lon float64) float64 {
     R := float64(6371)
     dLat := deg2rad(lat - sd.Latitude)
