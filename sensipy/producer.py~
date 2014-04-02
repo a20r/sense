@@ -8,7 +8,6 @@ import threading
 
 class Producer(object):
 
-    #initialises the producer
     def __init__(self, addr, port):
         self.addr = addr
         self.port = port
@@ -17,13 +16,13 @@ class Producer(object):
         self.worker_url = self.get_url()
         self.count = 0
 
-    
+
     def get_url(self):
         resp = urllib2.urlopen(self.url + "/url")
         data = json.loads(resp.read())
         return data["address"]
 
-    #sends sensor data in a POST request
+
     def send_sensor_data(self, id_str, latitude, longitude, data):
         self.count += 1
         if self.count % 1 == 0:
