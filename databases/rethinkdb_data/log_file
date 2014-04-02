@@ -1,78 +1,10 @@
-2014-03-27T10:24:42.046128000 0.477788s info: Creating directory /Users/wallarelvo-mac/Documents/Uni/JH/CS3301/Coding/databases/rethinkdb_data
-2014-03-27T10:24:42.046288000 0.477947s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/wallarelvo-mac/Documents/Uni/JH/CS3301/Coding/databases/rethinkdb_data' did not already exist.)
-2014-03-27T10:24:42.046329000 0.477988s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
-2014-03-27T10:24:42.066843000 0.498503s info: Running on Darwin 12.5.0 x86_64
-2014-03-27T10:24:42.066887000 0.498546s info: Loading data from directory /Users/wallarelvo-mac/Documents/Uni/JH/CS3301/Coding/databases/rethinkdb_data
-2014-03-27T10:24:45.964334000 4.396093s info: Listening for intracluster connections on port 29015
-2014-03-27T10:24:45.965497000 4.397255s info: Listening for client driver connections on port 28015
-2014-03-27T10:24:45.965512000 4.397270s info: Listening for administrative HTTP connections on port 8080
-2014-03-27T10:24:45.965748000 4.397506s info: Listening on addresses: 127.0.0.1, 172.31.1.81
-2014-03-27T10:24:45.965750000 4.397508s info: Server ready
-2014-03-29T08:18:49.025778000 33044.069388s info: Server got SIGINT; shutting down...
-2014-03-29T08:18:49.288636000 33044.332245s info: Shutting down client connections...
-2014-03-29T08:18:49.558408000 33044.602018s info: All client connections closed.
-2014-03-29T08:18:49.558426000 33044.602036s info: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
-2014-03-29T08:18:49.558430000 33044.602039s info: Storage engine shut down.
-2014-03-31T23:57:17.104338000 0.311269s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
-2014-03-31T23:57:17.152674000 0.359606s info: Running on Darwin 12.5.0 x86_64
-2014-03-31T23:57:17.152722000 0.359652s info: Loading data from directory /Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data
-2014-03-31T23:57:17.222792000 0.429722s info: Listening for intracluster connections on port 29015
-2014-03-31T23:57:17.224232000 0.431163s info: Listening for client driver connections on port 28015
-2014-03-31T23:57:17.224249000 0.431179s info: Listening for administrative HTTP connections on port 8080
-2014-03-31T23:57:17.224503000 0.431434s info: Listening on addresses: 127.0.0.1, 138.251.247.87
-2014-03-31T23:57:17.224504000 0.431435s info: Server ready
-2014-04-01T13:38:58.268505000 0.288089s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
-2014-04-01T13:38:58.290094000 0.309677s info: Running on Darwin 12.5.0 x86_64
-2014-04-01T13:38:58.290140000 0.309722s info: Loading data from directory /Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data
-2014-04-01T13:38:58.364215000 0.383797s info: Listening for intracluster connections on port 29015
-2014-04-01T13:38:58.365774000 0.385356s info: Listening for client driver connections on port 28015
-2014-04-01T13:38:58.365791000 0.385374s info: Listening for administrative HTTP connections on port 8080
-2014-04-01T13:38:58.366071000 0.385653s info: Listening on addresses: 127.0.0.1, 138.251.245.142
-2014-04-01T13:38:58.366072000 0.385654s info: Server ready
-2014-04-01T17:07:35.355001000 12517.039677s info: Applying data {"rdb_namespaces":{"c9f3abed-d28f-4cd8-8254-0cb6327c5f56":{"shards":["[\\"\\",null]"],"primary_pinnings":{"[\\"\\",null]":null},"secondary_pinnings":{"[\\"\\",null]":[]}}}}
-2014-04-01T17:07:40.919865000 12522.604758s info: Applying data {"rdb_namespaces":{"c9f3abed-d28f-4cd8-8254-0cb6327c5f56":{"shards":["[\\"\\",\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\"]","[\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\",\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\"]","[\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\",null]"],"primary_pinnings":{"[\\"\\",\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\"]":null,"[\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\",\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\"]":null,"[\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\",null]":null},"secondary_pinnings":{"[\\"\\",\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\"]":[],"[\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\",\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\"]":[],"[\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\",null]":[]}}}}
-2014-04-01T17:08:35.101690000 12576.788917s info: Applying data {"rdb_namespaces":{"c9f3abed-d28f-4cd8-8254-0cb6327c5f56":{"replica_affinities":{"00000000-0000-0000-0000-000000000000":0},"ack_expectations":{"00000000-0000-0000-0000-000000000000":{"expectation":1,"hard_durability":true}}}}}
-2014-04-01T17:10:34.043755000 12695.736132s info: Applying data {"rdb_namespaces":{"c9f3abed-d28f-4cd8-8254-0cb6327c5f56":{"shards":["[\\"\\",\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\"]","[\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\",\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\"]","[\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\",null]"],"primary_pinnings":{"[\\"\\",\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\"]":null,"[\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\",\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\"]":null,"[\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\",null]":null},"secondary_pinnings":{"[\\"\\",\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\"]":[],"[\\"S63edfe49-b8eb-4402-8477-ab12c39aa372\\",\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\"]":[],"[\\"Sfc9a2b5a-a126-4819-9484-b3d70153da68\\",null]":[]}}}}
-2014-04-01T17:11:32.817869000 12754.512800s info: Applying data {"datacenters":{"new":{"name":"US"}}}
-2014-04-01T17:12:06.946165000 12788.642568s info: Applying data {"machines":{"8d659d9c-61f5-4b18-9c7a-a470295d3935":{"datacenter_uuid":"e0d9b1fe-4e75-49a1-bd08-4ab35f4e281f"}}}
-2014-04-01T17:12:44.033924000 12825.731932s info: Applying data {"datacenters":{"e0d9b1fe-4e75-49a1-bd08-4ab35f4e281f":{"name":"Sense"}}}
-2014-04-01T17:13:22.093484000 12863.793138s info: Applying data {"rdb_namespaces":{"c9f3abed-d28f-4cd8-8254-0cb6327c5f56":{"replica_affinities":{"e0d9b1fe-4e75-49a1-bd08-4ab35f4e281f":0},"ack_expectations":{"e0d9b1fe-4e75-49a1-bd08-4ab35f4e281f":{"expectation":0,"hard_durability":true}}}}}
-2014-04-01T17:13:26.185115000 12867.884943s info: Applying data {"rdb_namespaces":{"c9f3abed-d28f-4cd8-8254-0cb6327c5f56":{"replica_affinities":{"00000000-0000-0000-0000-000000000000":0},"ack_expectations":{"00000000-0000-0000-0000-000000000000":{"expectation":1,"hard_durability":true}}}}}
-2014-04-01T19:42:37.520985000 21819.455046s info: Applying data {"databases":{"3dfc8e95-2201-477b-8f4d-0386462bf323":null},"rdb_namespaces":{"c9f3abed-d28f-4cd8-8254-0cb6327c5f56":null}}
-2014-04-01T19:51:51.064678000 22373.022333s info: Server got SIGINT; shutting down...
-2014-04-01T19:51:51.064831000 22373.022485s info: Shutting down client connections...
-2014-04-01T19:51:51.065017000 22373.022671s info: All client connections closed.
-2014-04-01T19:51:51.065023000 22373.022678s info: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
-2014-04-01T19:51:51.066303000 22373.023958s info: Storage engine shut down.
-2014-04-01T19:51:59.493194000 0.009089s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
-2014-04-01T19:51:59.515988000 0.031883s info: Running on Darwin 12.5.0 x86_64
-2014-04-01T19:51:59.516034000 0.031929s info: Loading data from directory /Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data
-2014-04-01T19:51:59.608832000 0.124727s info: Listening for intracluster connections on port 29015
-2014-04-01T19:51:59.610005000 0.125899s info: Listening for client driver connections on port 28015
-2014-04-01T19:51:59.610020000 0.125915s info: Listening for administrative HTTP connections on port 8080
-2014-04-01T19:51:59.610243000 0.126137s info: Listening on addresses: 127.0.0.1, 138.251.245.142
-2014-04-01T19:51:59.610244000 0.126139s info: Server ready
-2014-04-02T01:54:26.064772000 12512.131225s info: Server got SIGINT; shutting down...
-2014-04-02T01:54:26.065043000 12512.131496s info: Shutting down client connections...
-2014-04-02T01:54:26.065624000 12512.132077s info: All client connections closed.
-2014-04-02T01:54:26.065631000 12512.132084s info: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
-2014-04-02T01:54:26.142710000 12512.209163s info: Storage engine shut down.
-2014-04-02T01:54:35.108801000 0.015005s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
-2014-04-02T01:54:35.245828000 0.152031s info: Running on Darwin 12.5.0 x86_64
-2014-04-02T01:54:35.245877000 0.152080s info: Loading data from directory /Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data
-2014-04-02T01:54:35.253726000 0.159929s info: Listening for intracluster connections on port 29015
-2014-04-02T01:54:35.255326000 0.161529s info: Listening for client driver connections on port 28015
-2014-04-02T01:54:35.255339000 0.161542s info: Listening for administrative HTTP connections on port 8080
-2014-04-02T01:54:35.255658000 0.161861s info: Listening on addresses: 127.0.0.1, 138.251.255.13
-2014-04-02T01:54:35.255660000 0.161862s info: Server ready
-2014-04-02T03:11:26.107128000 0.323258s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
-2014-04-02T03:11:26.250116000 0.466245s info: Running on Darwin 12.5.0 x86_64
-2014-04-02T03:11:26.250178000 0.466307s info: Loading data from directory /Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data
-2014-04-02T03:11:26.336754000 0.552883s info: Listening for intracluster connections on port 29015
-2014-04-02T03:11:26.338380000 0.554509s info: Listening for client driver connections on port 28015
-2014-04-02T03:11:26.338399000 0.554528s info: Listening for administrative HTTP connections on port 8080
-2014-04-02T03:11:26.338752000 0.554881s info: Listening on addresses: 127.0.0.1, 138.251.255.13
-2014-04-02T03:11:26.338753000 0.554882s info: Server ready
-2014-04-02T03:17:27.531361000 361.764191s info: Applying data {"rdb_namespaces":{"ad261c0d-c61f-4fa8-ab36-6f0bf66cc8aa":{"shards":["[\\"\\",\\"S0.0388863030689\\"]","[\\"S0.0388863030689\\",\\"S0.0647810960607\\"]","[\\"S0.0647810960607\\",\\"S0.105450789633\\"]","[\\"S0.105450789633\\",\\"S0.149184790266\\"]","[\\"S0.149184790266\\",\\"S0.196389755806\\"]","[\\"S0.196389755806\\",\\"S0.213121963472\\"]","[\\"S0.213121963472\\",\\"S0.251980790095\\"]","[\\"S0.251980790095\\",\\"S0.28765240753\\"]","[\\"S0.28765240753\\",\\"S0.325393625184\\"]","[\\"S0.325393625184\\",\\"S0.354570053915\\"]","[\\"S0.354570053915\\",\\"S0.375089389778\\"]","[\\"S0.375089389778\\",\\"S0.404293057761\\"]","[\\"S0.404293057761\\",\\"S0.423829068028\\"]","[\\"S0.423829068028\\",\\"S0.471013291506\\"]","[\\"S0.471013291506\\",\\"S0.4957301864\\"]","[\\"S0.4957301864\\",\\"S0.532649464468\\"]","[\\"S0.532649464468\\",\\"S0.560698248865\\"]","[\\"S0.560698248865\\",\\"S0.611123976725\\"]","[\\"S0.611123976725\\",\\"S0.637481780587\\"]","[\\"S0.637481780587\\",\\"S0.666005270878\\"]","[\\"S0.666005270878\\",\\"S0.702593995135\\"]","[\\"S0.702593995135\\",\\"S0.721477955509\\"]","[\\"S0.721477955509\\",\\"S0.744208780727\\"]","[\\"S0.744208780727\\",\\"S0.771806113552\\"]","[\\"S0.771806113552\\",\\"S0.810187156171\\"]","[\\"S0.810187156171\\",\\"S0.828946182924\\"]","[\\"S0.828946182924\\",\\"S0.861574701362\\"]","[\\"S0.861574701362\\",\\"S0.889670460015\\"]","[\\"S0.889670460015\\",\\"S0.909698225219\\"]","[\\"S0.909698225219\\",\\"S0.937863548984\\"]","[\\"S0.937863548984\\",\\"S0.952405398251\\"]","[\\"S0.952405398251\\",null]"],"primary_pinnings":{"[\\"\\",\\"S0.0388863030689\\"]":null,"[\\"S0.0388863030689\\",\\"S0.0647810960607\\"]":null,"[\\"S0.0647810960607\\",\\"S0.105450789633\\"]":null,"[\\"S0.105450789633\\",\\"S0.149184790266\\"]":null,"[\\"S0.149184790266\\",\\"S0.196389755806\\"]":null,"[\\"S0.196389755806\\",\\"S0.213121963472\\"]":null,"[\\"S0.213121963472\\",\\"S0.251980790095\\"]":null,"[\\"S0.251980790095\\",\\"S0.28765240753\\"]":null,"[\\"S0.28765240753\\",\\"S0.325393625184\\"]":null,"[\\"S0.325393625184\\",\\"S0.354570053915\\"]":null,"[\\"S0.354570053915\\",\\"S0.375089389778\\"]":null,"[\\"S0.375089389778\\",\\"S0.404293057761\\"]":null,"[\\"S0.404293057761\\",\\"S0.423829068028\\"]":null,"[\\"S0.423829068028\\",\\"S0.471013291506\\"]":null,"[\\"S0.471013291506\\",\\"S0.4957301864\\"]":null,"[\\"S0.4957301864\\",\\"S0.532649464468\\"]":null,"[\\"S0.532649464468\\",\\"S0.560698248865\\"]":null,"[\\"S0.560698248865\\",\\"S0.611123976725\\"]":null,"[\\"S0.611123976725\\",\\"S0.637481780587\\"]":null,"[\\"S0.637481780587\\",\\"S0.666005270878\\"]":null,"[\\"S0.666005270878\\",\\"S0.702593995135\\"]":null,"[\\"S0.702593995135\\",\\"S0.721477955509\\"]":null,"[\\"S0.721477955509\\",\\"S0.744208780727\\"]":null,"[\\"S0.744208780727\\",\\"S0.771806113552\\"]":null,"[\\"S0.771806113552\\",\\"S0.810187156171\\"]":null,"[\\"S0.810187156171\\",\\"S0.828946182924\\"]":null,"[\\"S0.828946182924\\",\\"S0.861574701362\\"]":null,"[\\"S0.861574701362\\",\\"S0.889670460015\\"]":null,"[\\"S0.889670460015\\",\\"S0.909698225219\\"]":null,"[\\"S0.909698225219\\",\\"S0.937863548984\\"]":null,"[\\"S0.937863548984\\",\\"S0.952405398251\\"]":null,"[\\"S0.952405398251\\",null]":null},"secondary_pinnings":{"[\\"\\",\\"S0.0388863030689\\"]":[],"[\\"S0.0388863030689\\",\\"S0.0647810960607\\"]":[],"[\\"S0.0647810960607\\",\\"S0.105450789633\\"]":[],"[\\"S0.105450789633\\",\\"S0.149184790266\\"]":[],"[\\"S0.149184790266\\",\\"S0.196389755806\\"]":[],"[\\"S0.196389755806\\",\\"S0.213121963472\\"]":[],"[\\"S0.213121963472\\",\\"S0.251980790095\\"]":[],"[\\"S0.251980790095\\",\\"S0.28765240753\\"]":[],"[\\"S0.28765240753\\",\\"S0.325393625184\\"]":[],"[\\"S0.325393625184\\",\\"S0.354570053915\\"]":[],"[\\"S0.354570053915\\",\\"S0.375089389778\\"]":[],"[\\"S0.375089389778\\",\\"S0.404293057761\\"]":[],"[\\"S0.404293057761\\",\\"S0.423829068028\\"]":[],"[\\"S0.423829068028\\",\\"S0.471013291506\\"]":[],"[\\"S0.471013291506\\",\\"S0.4957301864\\"]":[],"[\\"S0.4957301864\\",\\"S0.532649464468\\"]":[],"[\\"S0.532649464468\\",\\"S0.560698248865\\"]":[],"[\\"S0.560698248865\\",\\"S0.611123976725\\"]":[],"[\\"S0.611123976725\\",\\"S0.637481780587\\"]":[],"[\\"S0.637481780587\\",\\"S0.666005270878\\"]":[],"[\\"S0.666005270878\\",\\"S0.702593995135\\"]":[],"[\\"S0.702593995135\\",\\"S0.721477955509\\"]":[],"[\\"S0.721477955509\\",\\"S0.744208780727\\"]":[],"[\\"S0.744208780727\\",\\"S0.771806113552\\"]":[],"[\\"S0.771806113552\\",\\"S0.810187156171\\"]":[],"[\\"S0.810187156171\\",\\"S0.828946182924\\"]":[],"[\\"S0.828946182924\\",\\"S0.861574701362\\"]":[],"[\\"S0.861574701362\\",\\"S0.889670460015\\"]":[],"[\\"S0.889670460015\\",\\"S0.909698225219\\"]":[],"[\\"S0.909698225219\\",\\"S0.937863548984\\"]":[],"[\\"S0.937863548984\\",\\"S0.952405398251\\"]":[],"[\\"S0.952405398251\\",null]":[]}}}}
-2014-04-02T03:17:36.060371000 370.293571s info: Applying data {"rdb_namespaces":{"ad261c0d-c61f-4fa8-ab36-6f0bf66cc8aa":{"shards":["[\\"\\",\\"S0.265541878904\\"]","[\\"S0.265541878904\\",\\"S0.50475852136\\"]","[\\"S0.50475852136\\",\\"S0.773536472876\\"]","[\\"S0.773536472876\\",null]"],"primary_pinnings":{"[\\"\\",\\"S0.265541878904\\"]":null,"[\\"S0.265541878904\\",\\"S0.50475852136\\"]":null,"[\\"S0.50475852136\\",\\"S0.773536472876\\"]":null,"[\\"S0.773536472876\\",null]":null},"secondary_pinnings":{"[\\"\\",\\"S0.265541878904\\"]":[],"[\\"S0.265541878904\\",\\"S0.50475852136\\"]":[],"[\\"S0.50475852136\\",\\"S0.773536472876\\"]":[],"[\\"S0.773536472876\\",null]":[]}}}}
-2014-04-02T03:17:42.235592000 376.469068s info: Applying data {"rdb_namespaces":{"ad261c0d-c61f-4fa8-ab36-6f0bf66cc8aa":{"replica_affinities":{"00000000-0000-0000-0000-000000000000":0},"ack_expectations":{"00000000-0000-0000-0000-000000000000":{"expectation":1,"hard_durability":true}}}}}
+2014-04-02T17:57:57.893419000 0.311422s info: Creating directory /Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data
+2014-04-02T17:57:57.893610000 0.311611s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data' did not already exist.)
+2014-04-02T17:57:57.893674000 0.311675s info: Running rethinkdb 1.10.1 (CLANG 4.2 (clang-425.0.28))...
+2014-04-02T17:57:57.898079000 0.316080s info: Running on Darwin 12.5.0 x86_64
+2014-04-02T17:57:57.898123000 0.316124s info: Loading data from directory /Users/wallarelvo-mac/Documents/Projects/sense/databases/rethinkdb_data
+2014-04-02T17:58:00.489884000 2.907929s info: Listening for intracluster connections on port 29015
+2014-04-02T17:58:00.491154000 2.909199s info: Listening for client driver connections on port 28015
+2014-04-02T17:58:00.491177000 2.909222s info: Listening for administrative HTTP connections on port 8080
+2014-04-02T17:58:00.491443000 2.909489s info: Listening on addresses: 127.0.0.1, 138.251.243.245
+2014-04-02T17:58:00.491444000 2.909489s info: Server ready

@@ -15,6 +15,7 @@ type LoadData struct {
 }
 
 var heartbeatMap map[string]LoadData = make(map[string]LoadData)
+var loadMap map[string]int = make(map[string]int)
 
 func getMinLoad() string {
     var minLoadData *LoadData = nil
@@ -29,7 +30,7 @@ func getMinLoad() string {
             *minAddr = addr_key
         }
 
-        if load_data.Frequency < minLoadData.Frequency {
+        if load_data.DeltaFreq < minLoadData.DeltaFreq {
             *minLoadData = load_data
             *minAddr = addr_key
         }

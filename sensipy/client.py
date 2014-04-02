@@ -2,6 +2,7 @@
 import urllib
 import urllib2
 import json
+import time
 
 class Client(object):
 
@@ -11,12 +12,18 @@ class Client(object):
         self.url = "http://" + addr + ":" + str(port)
 
     def get_sensor_data(self, lat, lon, rad):
+        start_time = time.time()
         req_url = self.url + "/client/" + "/".join(map(str, [lat, lon, rad]))
         req = urllib2.Request(req_url)
 
-        resp = urllib2.urlopen(req)
-        resp_str = resp.read()
-        resp_dict = json.loads(resp_str)
+        try:
+            resp = urllib2.urlopen(req)
+            time_diff = time.time() - start_time
+            print time_diff
+            resp_str = resp.read()
+            resp_dict = json.loads(resp_str)
+        except:
+            return list()
 
         return resp_dict
 
@@ -35,6 +42,6 @@ class ClientTester(object):
 
 
 if __name__ == "__main__":
-    ct = ClientTester(1000)
+    ct = ClientTester(10)
     ct.run()
 

@@ -25,7 +25,7 @@ class Producer(object):
 
     def send_sensor_data(self, id_str, latitude, longitude, data):
         self.count += 1
-        if self.count % 10 == 0:
+        if self.count % 1 == 0:
             self.worker_url = self.get_url()
 
         post_dictionary = {
@@ -42,7 +42,25 @@ class Producer(object):
             self.worker_url + "/sensors", post_dictionary_encode
         )
 
-        resp = urllib2.urlopen(req)
+        time_start = time.time()
+        try:
+            resp = urllib2.urlopen(req)
+        except:
+            for i in range(100):
+                try:
+                    self.worker_url = self.get_url()
+                except:
+                    exit(0)
+                try:
+                    req = urllib2.Request(
+                        self.worker_url + "/sensors", post_dictionary_encode
+                    )
+                    resp = urllib2.urlopen(req)
+                    break
+                except Exception as e:
+                    pass
+        time_diff = time.time() - time_start
+        return time_diff
 
 
 class ProducerTester(object):
@@ -56,11 +74,11 @@ class ProducerTester(object):
     def run(self):
 
         for i in range(self.num_runs):
-            self.prod.send_sensor_data(
+            print self.prod.send_sensor_data(
                 self.id_str, 56.339892299999995,
                 -2.8094739, {"test": 0}
             )
 
 if __name__ == "__main__":
-    pt = ProducerTester(1000)
+    pt = ProducerTester(10)
     pt.run()
