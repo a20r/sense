@@ -44,7 +44,6 @@ func getMinLoad() string {
     return *minAddr
 }
 
-//returns the url witht the minimum load
 func GetURL(w http.ResponseWriter, r *http.Request) {
     if len(heartbeatMap) < 1 {
         panic("No workers")

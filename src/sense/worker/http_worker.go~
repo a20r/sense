@@ -14,7 +14,6 @@ import (
 var Db util.SensorDB = util.MakeSensorDB("localhost")
 var ReqCount int = 0
 
-//writes data to the database
 func SensorRoute(w http.ResponseWriter, r *http.Request) {
     ReqCount++
     r.ParseForm()
@@ -30,7 +29,6 @@ func SensorRoute(w http.ResponseWriter, r *http.Request) {
     Db.Insert(sd)
 }
 
-//retrieves data from the database matching the parameters
 func ClientRoute(w http.ResponseWriter, r *http.Request) {
     ReqCount++
     param_list := strings.Split(r.RequestURI, "/")[2:]

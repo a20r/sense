@@ -27,8 +27,6 @@ func UpdateWorkers(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-
-//remove dead workers from the heartbeat map
 func removeDeadWorkers(workerMap map[string]LoadData) {
     current_time := time.Now().Unix()
     for addr, load_data := range workerMap {
@@ -38,7 +36,6 @@ func removeDeadWorkers(workerMap map[string]LoadData) {
     }
 }
 
-//call removeDeadWorkers func at a certain time delay
 func removeDeadWorkersLoop(workerMap map[string]LoadData) {
     for {
         log.Println(workerMap)

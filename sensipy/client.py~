@@ -6,13 +6,11 @@ import time
 
 class Client(object):
 
-    #initialises the client
     def __init__(self, addr, port):
         self.addr = addr
         self.port = port
         self.url = "http://" + addr + ":" + str(port)
 
-    #sends GET request for a data with specified parameters
     def get_sensor_data(self, lat, lon, rad):
         start_time = time.time()
         req_url = self.url + "/client/" + "/".join(map(str, [lat, lon, rad]))

@@ -15,13 +15,11 @@ type Heart struct {
     StopChannel chan int
 }
 
-//creates a heart
 func CreateHeart(interval time.Duration, local_url string) *Heart {
     stop_channel := make(chan int)
     return &Heart{interval, local_url, stop_channel}
 }
 
-//send an error
 func (hb *Heart) Beat() error {
     _, err := http.PostForm(
         config.BrokerHeartbeatUrl,
