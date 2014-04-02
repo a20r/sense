@@ -50,10 +50,11 @@
   </body>
 <script>
 
+//add device orientation listener
 if (window.DeviceOrientationEvent) {
-  document.getElementById("isSupported").innerHTML = "DeviceOrientation supported on your browser";
- console.log("DeviceOrientation is supported");
- window.addEventListener('deviceorientation', function(event) {
+  publishMssg('DeviceOrientation supported on your browser');
+  console.log("DeviceOrientation is supported");
+  window.addEventListener('deviceorientation', function(event) {
     // alpha is the compass direction the device is facing in degrees
     var alpha = event.alpha;
     // beta is the front-to-back tilt in degrees
@@ -67,59 +68,43 @@ if (window.DeviceOrientationEvent) {
   , false);
 }
  else {
-        document.getElementById("isSupported").innerHTML = "Not supported on your device or browser.Sorry."
+	publishMssg('Not supported on your device or browser. Sorry.');
       }
 
+//write orientation data in the webpage
 function deviceOrientationHandler(alpha, beta, gamma){
     document.getElementById("alpha").innerHTML = Math.round(alpha);
     document.getElementById("beta").innerHTML = Math.round(beta);
     document.getElementById("gamma").innerHTML = Math.round(gamma);
 }
 
-function handleClientRequest(){
-  var url = "http://localhost:8000";
-
-  $.ajax({
-    url: url,
-    type: "GET",
-    success: function(data){
-      handleResponse(data);
-    },
-    error: function(){
-      publishError();
-    },
-    cache: false
-  });
-}
-
-function handleResponse(data){
-console.log(data);
-}
-
-function publishError(){
+//publish message in the table
+function publishMssg(message){
   $('#isSupported').html(''); 
   
     var mainDiv = $('#isSupported')[0];
     
-    var errorDiv = document.createElement("div");
-    var errorText = document.createTextNode("Smth went wrong! ");
-    errorDiv.appendChild(errorText);
-    errorDiv.setAttribute("id", "error");
-    mainDiv.appendChild(errorDiv);
+    var mssgDiv = document.createElement("div");
+    var mssgText = document.createTextNode(message);
+    mssgDiv.appendChild(errorText);
+    mssgDiv.setAttribute("id", "mssg");
+    mainDiv.appendChild(mssgDiv);
     
 }
 
+//add sending interval
 function send(){
 var user_interval = document.getElementById("time_interval").innerHTML;
 var time_interval = user_interval * 1000 ;
 sendingInterval = window.setInterval(sendSensor, time_interval);
 }
 
+//send POST request with the data
 function sendSensor(){
  var timestamp = new Date().getTime();
  var longitude = document.getElementById("long").innerHTML;
  var latitude =  document.getElementById("lat").innerHTML;
- //use ip address as an id;
+ //use IP address as an id;
  var id = document.getElementById("ip").innerHTML;
  var alpha = 0;
  var beta = 0;
@@ -148,7 +133,7 @@ function sendSensor(){
 );
 }
 
-
+//get IP, longitude and lattitude
 function initGeolocation(){
 
 	jQuery.getJSON("http://www.telize.com/geoip?callback=?",

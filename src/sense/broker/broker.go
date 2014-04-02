@@ -61,7 +61,7 @@ func MobileDeviceReroute(w http.ResponseWriter, r *http.Request) {
 
     minAddr := getMinLoad()
 
-    http.Redirect(w, r, minAddr+"/temp.html", http.StatusFound)
+    http.Redirect(w, r, minAddr+"/producer.html", http.StatusFound)
 }
 
 func ClientReroute(w http.ResponseWriter, r *http.Request) {
