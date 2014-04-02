@@ -50,9 +50,9 @@
   </body>
 <script>
 
-//add device orientation listener
 if (window.DeviceOrientationEvent) {
-  publishMssg('DeviceOrientation supported on your browser');
+  publishError('Not supported on your device or browser.Sorry.');
+  //document.getElementById("isSupported").innerHTML = "DeviceOrientation supported on your browser";
   console.log("DeviceOrientation is supported");
   window.addEventListener('deviceorientation', function(event) {
     // alpha is the compass direction the device is facing in degrees
@@ -68,43 +68,40 @@ if (window.DeviceOrientationEvent) {
   , false);
 }
  else {
-	publishMssg('Not supported on your device or browser. Sorry.');
+	publishError('Not supported on your device or browser.Sorry.');
       }
 
-//write orientation data in the webpage
 function deviceOrientationHandler(alpha, beta, gamma){
     document.getElementById("alpha").innerHTML = Math.round(alpha);
     document.getElementById("beta").innerHTML = Math.round(beta);
     document.getElementById("gamma").innerHTML = Math.round(gamma);
 }
 
-//publish message in the table
-function publishMssg(message){
+
+function publishError(message){
   $('#isSupported').html(''); 
   
     var mainDiv = $('#isSupported')[0];
     
-    var mssgDiv = document.createElement("div");
-    var mssgText = document.createTextNode(message);
-    mssgDiv.appendChild(errorText);
-    mssgDiv.setAttribute("id", "mssg");
-    mainDiv.appendChild(mssgDiv);
+    var errorDiv = document.createElement("div");
+    var errorText = document.createTextNode(message);
+    errorDiv.appendChild(errorText);
+    errorDiv.setAttribute("id", "error");
+    mainDiv.appendChild(errorDiv);
     
 }
 
-//add sending interval
 function send(){
 var user_interval = document.getElementById("time_interval").innerHTML;
 var time_interval = user_interval * 1000 ;
 sendingInterval = window.setInterval(sendSensor, time_interval);
 }
 
-//send POST request with the data
 function sendSensor(){
  var timestamp = new Date().getTime();
  var longitude = document.getElementById("long").innerHTML;
  var latitude =  document.getElementById("lat").innerHTML;
- //use IP address as an id;
+ //use ip address as an id;
  var id = document.getElementById("ip").innerHTML;
  var alpha = 0;
  var beta = 0;
@@ -133,7 +130,7 @@ function sendSensor(){
 );
 }
 
-//get IP, longitude and lattitude
+
 function initGeolocation(){
 
 	jQuery.getJSON("http://www.telize.com/geoip?callback=?",
