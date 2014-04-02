@@ -2,6 +2,7 @@ package main
 
 import (
     config "../config"
+    "log"
     "net/http"
     "strconv"
     "time"
@@ -16,10 +17,12 @@ func UpdateWorkers(w http.ResponseWriter, r *http.Request) {
 
     load_data, in_map := heartbeatMap[address]
     if !in_map {
-        heartbeatMap[address] = LoadData{current_time, req_count}
+        heartbeatMap[address] = LoadData{current_time, 0, req_count}
     } else {
+        load_data.Frequency = float64(req_count-load_data.DeltaFreq) /
+            float64(current_time-load_data.Timestamp)
         load_data.Timestamp = current_time
-        load_data.Frequency = req_count
+        load_data.DeltaFreq = req_count
         heartbeatMap[address] = load_data
     }
 }
@@ -35,6 +38,7 @@ func removeDeadWorkers(workerMap map[string]LoadData) {
 
 func removeDeadWorkersLoop(workerMap map[string]LoadData) {
     for {
+        log.Println(workerMap)
         time.Sleep(config.TimeDelayRemoveCheck)
         removeDeadWorkers(workerMap)
     }

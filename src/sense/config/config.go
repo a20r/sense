@@ -10,8 +10,8 @@ var HeartbeatRoute string = "/heartbeat"
 var BrokerHeartbeatUrl string = BrokerUrl + HeartbeatRoute
 
 /* Time needed to remove worker */
-var WorkerTimeRemove int64 = 1
-var TimeDelayRemoveCheck time.Duration = 500 * time.Millisecond
+var WorkerTimeRemove int64 = 5
+var TimeDelayRemoveCheck time.Duration = 5000 * time.Millisecond
 
 /* Worker Routes */
 var WorkerSensorRoute string = "/sensors"

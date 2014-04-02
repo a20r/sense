@@ -22,7 +22,7 @@ type SensorDataRow []SensorData
 
 var DbPort string = ":28015"
 var DbName string = "sense"
-var TSpec r.TableSpec = r.TableSpec{Name: "sensors", PrimaryKey: "id"}
+var TSpec r.TableSpec = r.TableSpec{Name: "sensors", PrimaryKey: "Id"}
 
 func MakeSensorDB(addr string) SensorDB {
     db := SensorDB{addr}

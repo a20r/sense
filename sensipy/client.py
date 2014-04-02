@@ -20,7 +20,21 @@ class Client(object):
 
         return resp_dict
 
+
+class ClientTester(object):
+
+    def __init__(self, num_runs):
+        self.cl = Client("localhost", 8000)
+        self.num_runs = num_runs
+
+
+    def run(self):
+
+        for i in range(self.num_runs):
+            self.cl.get_sensor_data(56.339892299999995, -2.8094739, 3)
+
+
 if __name__ == "__main__":
-    cl = Client("localhost", 8000)
-    print cl.get_sensor_data(56.339892299999995, -2.8094739, 3)
+    ct = ClientTester(1000)
+    ct.run()
 

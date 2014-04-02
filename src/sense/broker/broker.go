@@ -10,7 +10,8 @@ import (
 
 type LoadData struct {
     Timestamp int64
-    Frequency int
+    Frequency float64
+    DeltaFreq int
 }
 
 var heartbeatMap map[string]LoadData = make(map[string]LoadData)
@@ -48,7 +49,8 @@ func GetURL(w http.ResponseWriter, r *http.Request) {
 
     minAddr := getMinLoad()
 
-    fmt.Fprint(w, util.Response{"address": minAddr})
+    ld := heartbeatMap[minAddr]
+    fmt.Fprint(w, util.Response{"address": minAddr, "count": ld.Frequency})
 }
 
 func MobileDeviceReroute(w http.ResponseWriter, r *http.Request) {
@@ -97,5 +99,6 @@ func main() {
 
     go removeDeadWorkersLoop(heartbeatMap)
 
-    http.ListenAndServe(*addr_flag+":"+*port_flag, nil)
+    err := http.ListenAndServe(*addr_flag+":"+*port_flag, nil)
+    fmt.Println(err)
 }

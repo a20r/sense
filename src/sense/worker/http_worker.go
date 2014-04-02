@@ -5,6 +5,7 @@ import (
     util "../util"
     "flag"
     "fmt"
+    "log"
     "net/http"
     "strconv"
     "strings"
@@ -64,5 +65,6 @@ func main() {
     defer heart.Stop()
     heart.Start()
 
-    http.ListenAndServe(*addr_flag+":"+*port_flag, nil)
+    err := http.ListenAndServe(*addr_flag+":"+*port_flag, nil)
+    log.Println(err)
 }

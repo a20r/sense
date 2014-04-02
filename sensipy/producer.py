@@ -3,6 +3,8 @@ import time
 import urllib
 import urllib2
 import json
+import random
+import threading
 
 class Producer(object):
 
@@ -12,6 +14,7 @@ class Producer(object):
 
         self.url = "http://" + addr + ":" + str(port)
         self.worker_url = self.get_url()
+        self.count = 0
 
 
     def get_url(self):
@@ -21,6 +24,10 @@ class Producer(object):
 
 
     def send_sensor_data(self, id_str, latitude, longitude, data):
+        self.count += 1
+        if self.count % 10 == 0:
+            self.worker_url = self.get_url()
+
         post_dictionary = {
             "id": id_str,
             "timestamp": time.time(),
@@ -38,9 +45,22 @@ class Producer(object):
         resp = urllib2.urlopen(req)
 
 
-if __name__ == "__main__":
-    pr = Producer("localhost", 8000)
-    pr.send_sensor_data(
-        "python", 56.339892299999995, -2.8094739, {"test": 0}
-    )
+class ProducerTester(object):
 
+    def __init__(self, num_runs):
+        self.id_str = str(random.random())
+        self.prod = Producer("localhost", 8000)
+        self.num_runs = num_runs
+
+
+    def run(self):
+
+        for i in range(self.num_runs):
+            self.prod.send_sensor_data(
+                self.id_str, 56.339892299999995,
+                -2.8094739, {"test": 0}
+            )
+
+if __name__ == "__main__":
+    pt = ProducerTester(1000)
+    pt.run()
